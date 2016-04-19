@@ -1,5 +1,5 @@
 # Get all tags and save them to a csv in /tmp
-This require that the wordpress is installed with wp_ and not any custom table names.
+This require that the wordpress is installed with wp_.
 
 ```
   mysql> CONNECT wordpress;
