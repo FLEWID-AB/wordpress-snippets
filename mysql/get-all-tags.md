@@ -3,6 +3,7 @@ This require that the wordpress is installed with wp_ and not any custom table n
 
 ```
   mysql> CONNECT wordpress;
+```
 
 ```sql
   SELECT wp_terms.`name` AS TagName 
@@ -13,3 +14,4 @@ This require that the wordpress is installed with wp_ and not any custom table n
   FIELDS TERMINATED BY ',' 
   ENCLOSED BY '"' 
   LINES TERMINATED BY '\n';
+```
