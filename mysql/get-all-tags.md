@@ -1,2 +1,9 @@
-```mysql
-  SELECT wp_terms.`name` AS TagName FROM `wp_terms` INNER JOIN wp_term_taxonomy tax ON tax.term_id = wp_terms.term_id GROUP BY wp_terms.`term_id` INTO OUTFILE '/tmp/tags.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
+```sql
+  SELECT wp_terms.`name` AS TagName 
+  FROM `wp_terms` 
+  INNER JOIN wp_term_taxonomy tax ON tax.term_id = wp_terms.term_id 
+  GROUP BY wp_terms.`term_id` 
+  INTO OUTFILE '/tmp/tags.csv' 
+  FIELDS TERMINATED BY ',' 
+  ENCLOSED BY '"' 
+  LINES TERMINATED BY '\n';
