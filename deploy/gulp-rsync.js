@@ -28,7 +28,6 @@ gulp.task('deploy', ['build'], function() {
     .pipe(chmod(644))
     .pipe(gulp.dest('dist'));
 
-
   // Rsync options
   var rsyncOptions = {
     root: 'dist',
