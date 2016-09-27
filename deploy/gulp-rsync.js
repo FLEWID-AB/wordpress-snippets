@@ -46,6 +46,7 @@ gulp.task('deploy', ['build'], function() {
     rsyncOptions.username = 'USER'; // SSH Staging username
     rsyncOptions.destination = ''; // Staging path where uploaded files go
   } else {
+    // If no env is defined we dont do anything. You can add your own error logger here.
     return false
   }
 
