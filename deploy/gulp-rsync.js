@@ -29,9 +29,9 @@ gulp.task('deploy', function() {
     .pipe(rsync({
       root: 'dist',
       incremental: true,
-      username: 'deployer',
-      hostname: '188.166.67.236',
+      username: 'USER',
+      hostname: 'XXX',
       progress: true,
-      destination: '/var/www/wp-content/themes/privlic'
+      destination: 'DIRECT PATH TO WP THEME DIR'
     }));
 });
