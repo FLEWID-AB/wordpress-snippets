@@ -4,7 +4,7 @@ var prompt = require('gulp-prompt');
 var rsync  = require('gulp-rsync');
 var chmod  = require('gulp-chmod');
 
-gulp.task('deploy', ['build'], function() {
+gulp.task('deploy', function() {
   // Define your paths here
   var paths = [
     "*.php", 
