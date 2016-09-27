@@ -1,11 +1,12 @@
-var argv   = require('minimist')(process.argv);
-var gulpif = require('gulp-if');
-var prompt = require('gulp-prompt');
-var rsync  = require('gulp-rsync');
-var chmod  = require('gulp-chmod');
+var argv        = require('minimist')(process.argv);
+var gulpif      = require('gulp-if');
+var prompt      = require('gulp-prompt');
+var rsync       = require('gulp-rsync');
+var chmod       = require('gulp-chmod');
+var sequence    = require('run-sequence');
 
-gulp.task('deploy', function() {
-  // Define your paths here
+gulp.task('create_dist', function(){
+  // Add your paths here.
   var paths = [
     "*.php", 
     "*.css", 
@@ -20,14 +21,18 @@ gulp.task('deploy', function() {
     ];
 
   // Copy to DIST
-  gulp.src(paths,  {base: './'})
-    .pipe(gulp.dest('dist/'))
+  return gulp.src(paths,  {base: './'})
+    .pipe(gulp.dest('dist/'));
+});
 
-  // Secure the shit out of the files
-  gulp.src('dist/**/*', {base: 'dist/'})
+gulp.task('secure_dist', function(){
+  // Secure the shit out of the files inside Dist
+  return gulp.src('dist/**/*', {base: 'dist/'})
     .pipe(chmod(644))
     .pipe(gulp.dest('dist'));
+});
 
+gulp.task('rsync', function(){
   // Rsync options
   var rsyncOptions = {
     root: 'dist',
@@ -58,4 +63,11 @@ gulp.task('deploy', function() {
         default: false
     })))  
     .pipe(rsync(rsyncOptions));
+});
+
+
+gulp.task('deploy', function() {
+  sequence('...your build tasks here', 'create_dist', 'secure_dist', function(){
+    gulp.start('rsync');
+  });
 });
